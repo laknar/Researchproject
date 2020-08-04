@@ -5,10 +5,34 @@ var service = require('../../services/user/user.services');
 const newVar = new service();
 
 
-router.post('/getAll', async function (req, res) {
+router.post('/addUserData', async function (req, res) {
     
     //var captData = req.body.name + ' HARINDI ';
-    newVar.methodName1(req,res);
+    newVar.addUserData(req,res);
+});
+
+router.get('/retrieveUserData', async function (req, res) {
+    
+    //var captData = req.body.name + ' HARINDI ';
+    newVar.retrieveUserData(req,res);
+});
+
+router.put('/updateUserData', async function (req, res) {
+    
+    //var captData = req.body.name + ' HARINDI ';
+    newVar.updateUserData(req,res);
+});
+
+router.delete('/deleteUserData', async function (req, res) {
+    
+    //var captData = req.body.name + ' HARINDI ';
+    newVar.deleteUserData(req,res);
+});
+
+router.get('/retrieveUserDataById/:id', async function (req, res) {
+    
+    //var captData = req.body.name + ' HARINDI ';
+    newVar.retrieveUserDataById(req,res);
 });
 
 
