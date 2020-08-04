@@ -1,0 +1,40 @@
+{
+  "name": "researchplant",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^16.1.8",
+    "base64-img": "^1.0.4",
+    "bcryptjs": "^2.4.3",
+    "biguint-format": "^1.0.2",
+    "dotenv": "^8.2.0",
+    "email-templates": "^7.0.5",
+    "eslint-config-node-style-guide": "^3.0.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.3",
+    "flake-idgen": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.26.0",
+    "mongodb": "^3.4.1",
+    "mongoose": "^5.8.3",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.4.10",
+    "nodemon": "^2.0.2",
+    "path": "^0.12.7",
+    "pug": "^3.0.0"
+  },
+  "devDependencies": {
+    "prettier": "2.0.5",
+    "eslint": "^7.1.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
