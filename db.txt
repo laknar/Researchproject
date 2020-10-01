@@ -1,0 +1,158 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema research_db
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema research_db
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `research_db` DEFAULT CHARACTER SET utf8 ;
+USE `research_db` ;
+
+-- -----------------------------------------------------
+-- Table `research_db`.`category`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `research_db`.`category` (
+  `category_id` INT NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`category_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `research_db`.`user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `research_db`.`user` (
+  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `user_name` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `fullname` VARCHAR(45) NOT NULL,
+  `location` VARCHAR(45) NOT NULL,
+  `category` ENUM('Farmer', 'Researcher', 'Vendor') NOT NULL,
+  `research_center` ENUM('Kahagolla', 'Gampaha', 'TRI', 'Gannoruwa') NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE INDEX `User ID_UNIQUE` (`user_id` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `research_db`.`farmer`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `research_db`.`farmer` (
+  `farmer_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`farmer_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `research_db`.`session_table`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `research_db`.`session_table` (
+  `session_id` VARCHAR(45) NOT NULL,
+  `uploaded_date` DATE NOT NULL,
+  `image` LONGTEXT NULL,
+  `disorder_id` INT NULL,
+  `disorder_degree` ENUM('<30%', '30-70%', '>70%') NULL,
+  `leaf_count` INT NULL,
+  `research_findingsid` INT NULL,
+  PRIMARY KEY (`session_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `research_db`.`researcher`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `research_db`.`researcher` (
+  `researcher_id` INT NOT NULL,
+  `user_id` INT NULL,
+  PRIMARY KEY (`researcher_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `research_db`.`vendor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `research_db`.`vendor` (
+  `vendor_id` INT NOT NULL,
+  `user_id` INT NULL,
+  PRIMARY KEY (`vendor_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `research_db`.`disorder`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `research_db`.`disorder` (
+  `disorder_id` INT NOT NULL,
+  `crop_id` INT NOT NULL,
+  `disorder_name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`disorder_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `research_db`.`crop`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `research_db`.`crop` (
+  `crop_id` INT NOT NULL,
+  `crop_name` VARCHAR(45) NULL,
+  PRIMARY KEY (`crop_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `research_db`.`crop_farmer`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `research_db`.`crop_farmer` (
+  `crop_farmerid` INT NOT NULL,
+  `cropid` INT NULL,
+  `farmerid` INT NULL,
+  PRIMARY KEY (`crop_farmerid`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `research_db`.`research_findings`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `research_db`.`research_findings` (
+  `research_findingsid` INT NOT NULL,
+  `researcher_id` INT NOT NULL,
+  `product_disorder_id` INT NOT NULL,
+  `remedy` LONGTEXT NULL,
+  `crop_id` INT NOT NULL,
+  PRIMARY KEY (`research_findingsid`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `research_db`.`product_disorder`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `research_db`.`product_disorder` (
+  `product_disorderid` INT NOT NULL,
+  `product_id` INT NOT NULL,
+  `vendor_id` INT NOT NULL,
+  `disorder_id` INT NOT NULL,
+  PRIMARY KEY (`product_disorderid`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `research_db`.`product`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `research_db`.`product` (
+  `product_id` INT NOT NULL,
+  `vendor_id` INT NOT NULL,
+  `product_name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`product_id`))
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

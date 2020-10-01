@@ -4,10 +4,10 @@ const mysql = require('mysql');
 
 const pool = mysql.createPool({
     connectionLimit: 30,
-    host: 'database-1.cqywssmzc9ik.us-east-2.rds.amazonaws.com',
-    user: 'admin',
-    password: '4OHe17RhMACgnSjxc251',
-    database: 'mydb'
+    host: '127.0.0.1',
+    user: 'root',
+    //password: '4OHe17RhMACgnSjxc251',
+    database: 'research_db'
 });
 
 

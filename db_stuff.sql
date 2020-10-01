@@ -1,0 +1,1 @@
+SELECT * FROM research_db.crop_farmer;

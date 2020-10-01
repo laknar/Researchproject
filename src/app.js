@@ -1,10 +1,11 @@
 var express = require('express');
 var app = express();
 const bodyParser = require('body-parser');
-//const dotenv = require('dotenv');
+const dotenv = require('dotenv');
 const fileupload = require('express-fileupload');
 var user = require('./api/user/user.controller.js');
-//dotenv.config();
+var ruser = require('./api/user/ruser.controller.js');
+dotenv.config();
 
 
 app.use(
@@ -22,5 +23,5 @@ var server = app.listen(8000, function () {
     console.log('Example app listening at http://%s:%s', host, port);
 });
 app.use('/api/user',user);
-
+app.use('/api/ruser', ruser);
 
